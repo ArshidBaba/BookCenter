@@ -22,7 +22,7 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
-    isbn = models.TextField(max_length=13, help_text='13 Character ISBN number</a>')
+    isbn = models.CharField(max_length=13, help_text='13 Character ISBN number</a>', blank=True)
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
 
     def __str__(self):
