@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-from .models import Book, Author
-from .serializers import BookSerializer, AuthorSerializer
+from .models import Book, Author, Genre, BookInstance
+from .serializers import BookSerializer, AuthorSerializer, GenreSerializer, BookInstanceSerializer
 
 # class BookDetail(APIView):
 #     def get(self, request, pk):
@@ -22,3 +22,10 @@ class AuthorList(APIView):
         authors = Author.objects.all()
         data = AuthorSerializer(authors, many=True).data
         return Response(data)
+
+class GenreList(APIView):
+    def get(self, request):
+        genres = Genre.objects.all()
+        data = GenreSerializer(genres, many=True).data
+        return Response(data)
+
