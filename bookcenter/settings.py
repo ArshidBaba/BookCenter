@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog',
     'rest_framework',
+    'rest_framework_swagger',
+    # 'django_rest_swagger',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT=os.path.join(PROJECT_ROOT, 'static')
 
 django_heroku.settings(locals())
+
+# Parser classes to help swagger, default ll be JSONParser only.
+REST_FRAMEWORK = {
+    # Parser classes priority-wise for Swagger
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}

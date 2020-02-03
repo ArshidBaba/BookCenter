@@ -14,10 +14,10 @@ class BookSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AuthorSerializer(serializers.ModelSerializer):
-    authors = BookSerializer(many=True)
+    # authors = BookSerializer(many=True)
     class Meta:
         model = Author
-        fields = '__all__'
+        fields = ('first_name', 'last_name',)
 
 class GenreSerializer(serializers.ModelSerializer):
     genres = BookSerializer(many=True)
