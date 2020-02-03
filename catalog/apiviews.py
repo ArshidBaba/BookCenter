@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
@@ -29,3 +30,6 @@ class GenreList(APIView):
         data = GenreSerializer(genres, many=True).data
         return Response(data)
 
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
