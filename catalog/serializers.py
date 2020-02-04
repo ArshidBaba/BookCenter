@@ -9,6 +9,8 @@ class BookInstanceSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     # book_inst = BookInstanceSerializer(many=True)
+    # data = book_inst[0][]
+    # name = serializers.CharField(source="first_name.title", read_only=True)
     class Meta:
         model = Book
         fields = '__all__'
