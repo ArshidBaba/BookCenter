@@ -2,9 +2,10 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from rest_framework.renderers import TemplateHTMLRenderer
 
-from .models import Book, Author, Genre, BookInstance
-from .serializers import BookSerializer, AuthorSerializer, GenreSerializer, BookInstanceSerializer
+from .models import Book, Author, Genre, BookInstance, Query
+from .serializers import BookSerializer, AuthorSerializer, GenreSerializer, BookInstanceSerializer, QuerySerializer
 
 class BookDetail(APIView):
     def get(self, request, pk):
@@ -45,3 +46,19 @@ class GenreViewSet(viewsets.ModelViewSet):
 class BookInstanceViewSet(viewsets.ModelViewSet):
     queryset = BookInstance.objects.all()
     serializer_class = BookInstanceSerializer   
+
+# class QueryDetail(APIView):
+#     renderer_classes = [TemplateHTMLRenderer]
+#     template_name = 'query_form.html'
+
+#     def get(self, request):
+#         serializer_class = QuerySerializer()
+
+#     def post(self, request):
+#         serializer_class = QuerySerializer(data=request.data)
+#         serializer_class.save()
+#         return redirect('books')
+
+class QueryViewSet(viewsets.ModelViewSet):
+    queryset = Query.objects.all()
+    serializer_class = QuerySerializer
