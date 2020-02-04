@@ -8,17 +8,11 @@ class BookInstanceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookSerializer(serializers.ModelSerializer):
-    # author = serializers.SlugRelatedField(
-    #     many=True,
-    #     read_only=True,
-    #     slug_field='author'
-    # )
     class Meta:
         model = Book
         fields = ('title', 'author',)
 
 class AuthorSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = Author
         fields = '__all__'
