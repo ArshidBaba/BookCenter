@@ -8,18 +8,20 @@ class BookInstanceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookSerializer(serializers.ModelSerializer):
-    # book_inst = BookInstanceSerializer(many=True)
-    # data = book_inst[0][]
-    # name = serializers.CharField(source="first_name.title", read_only=True)
+    # author = serializers.SlugRelatedField(
+    #     many=True,
+    #     read_only=True,
+    #     slug_field='author'
+    # )
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ('title', 'author',)
 
 class AuthorSerializer(serializers.ModelSerializer):
-    # authors = BookSerializer(many=True)
+    
     class Meta:
         model = Author
-        fields = ('first_name', 'last_name')
+        fields = '__all__'
 
 class GenreSerializer(serializers.ModelSerializer):
     # genres = BookSerializer(many=True)

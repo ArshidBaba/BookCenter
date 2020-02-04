@@ -8,20 +8,21 @@ class Genre(models.Model):
         return self.name
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, primary_key=True, default='')
+    # last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
 
     class Meta:
-        ordering = ['last_name', 'first_name']
+        ordering = ['name']
 
+    # def __str__(self):
+    #     return f'{self.last_name}, {self.first_name}'
     def __str__(self):
-        return f'{self.last_name}, {self.first_name}'
-
+        return self.name
 class Book(models.Model):
     title = models.CharField(max_length=100)
-    author = models.ForeignKey(Author, related_name="authors", on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(Author, related_name="author", on_delete=models.SET_NULL, null=True)
     isbn = models.CharField(max_length=13, help_text='13 Character ISBN number</a>', blank=True)
     genre = models.ManyToManyField(Genre, related_name="genres", help_text='Select a genre for this book')
 
