@@ -8,7 +8,7 @@ class BookInstanceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookSerializer(serializers.ModelSerializer):
-    book_inst = BookInstanceSerializer(many=True)
+    # book_inst = BookInstanceSerializer(many=True)
     class Meta:
         model = Book
         fields = '__all__'
@@ -17,10 +17,10 @@ class AuthorSerializer(serializers.ModelSerializer):
     # authors = BookSerializer(many=True)
     class Meta:
         model = Author
-        fields = ('first_name', 'last_name',)
+        fields = ('first_name', 'last_name')
 
 class GenreSerializer(serializers.ModelSerializer):
-    genres = BookSerializer(many=True)
+    # genres = BookSerializer(many=True)
     class Meta:
         model = Genre
         fields = '__all__'
