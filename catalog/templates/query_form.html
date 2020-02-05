@@ -1,13 +1,11 @@
-{% load rest_framework %}
-
 <html><body>
 
 <h1>Query Page</h1>
 
-<form action="{% url 'query' %}" method="POST">
-    {% csrf_token %}
-    {% render_form serializer %}
-    <input type="submit" value="Save">
+<form action="/team_name_url/" method="post">
+    <label for="team_name">Enter name: </label>
+    <input id="team_name" type="text" name="name_field" value="">
+    <input type="submit" value="OK">
 </form>
 
 </body></html>

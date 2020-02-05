@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Book, Author, Genre, BookInstance, Query
+from .models import Book, Author, Genre, BookInstance
+# , Query
 
 class BookInstanceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,8 +24,8 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = '__all__'
 
-class QuerySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Query
-        fields = '__all__'
+# class QuerySerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Query
+#         fields = '__all__'
 

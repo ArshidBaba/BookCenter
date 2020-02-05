@@ -1,11 +1,11 @@
 from django.db import models
 import uuid
 
-class Query(models.Model):
-    query_text = models.TextField(max_length=300, help_text='Writ your query')
+# class Query(models.Model):
+#     query_text = models.TextField(max_length=300, help_text='Writ your query')
 
-    def __str__(self):
-        return self.query_text
+    # def __str__(self):
+    #     return self.query_text
 
 class Genre(models.Model):
     name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
