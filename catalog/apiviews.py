@@ -46,6 +46,11 @@ class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
@@ -56,12 +61,14 @@ class BookInstanceViewSet(viewsets.ModelViewSet):
 
 class Query(APIView):
     def get(self, request):
-        query = Book.objects.all()
-        data = BookSerializer(many=True).data
-        return render(request, 'query_form.html', dict(data))
+        # query = Book.objects.all()
+        # data = BookSerializer(many=True).data
+        return render(request, 'query_form.html')
     def post(self, request):
-        text = request.data
-        return render(request, 'query_form.html', text)
+        email = request.POST['email']
+        d = {"message": "<h1>You are a subcriber now</h1>"}
+        print(email)
+        return render(request, 'query_form.html')
         # return Response({"Query has been sent": text})
 
 
