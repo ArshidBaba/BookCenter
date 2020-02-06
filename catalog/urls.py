@@ -23,7 +23,7 @@ urlpatterns = [
     # path('authors/', AuthorList.as_view(), name='authors'),
     # path('catalog/<int:pk>/', BookInstanceViewSet.as_view(), name="catalog" )
     # path('swagger-docs/', schema_view),
-    path('querys', Query.as_view(), name='querys'),
+    path('queries', Query.as_view(), name='queries'),
 ]
 
 urlpatterns += router.urls
