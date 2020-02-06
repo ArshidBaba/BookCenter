@@ -1,11 +1,21 @@
-<html><body>
+<html>
+<body>
 
 <h1>Query Page</h1>
 
-<form action="/team_name_url/" method="post">
+<!-- <form action="/team_name_url/" method="post">
     <label for="team_name">Enter email: </label>
     <input id="team_name" type="text" name="name_field" value="">
     <input type="submit" value="OK">
-</form>
+</form> -->
 
+<form action="{% url 'querys' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" name="email" class="form-control" required>
+    </div>
+    <input type="submit" value="OK" class="btn btn-secondary btn-block">
+</form>
 </body></html>
+

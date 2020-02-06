@@ -1,12 +1,6 @@
 from django.db import models
 import uuid
 
-# class Query(models.Model):
-#     query_text = models.TextField(max_length=300, help_text='Writ your query')
-
-    # def __str__(self):
-    #     return self.query_text
-
 class Genre(models.Model):
     name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
 
@@ -15,15 +9,12 @@ class Genre(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=100, primary_key=True, default='')
-    # last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
 
     class Meta:
         ordering = ['name']
 
-    # def __str__(self):
-    #     return f'{self.last_name}, {self.first_name}'
     def __str__(self):
         return self.name
 class Book(models.Model):
@@ -36,7 +27,7 @@ class Book(models.Model):
         return self.title
 
 class BookInstance(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library')
+    id = models.UUIDField(max_length=255,primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library')
     book = models.ForeignKey(Book, related_name="book_inst", on_delete=models.SET_NULL, null=True)
     imprint = models.CharField(max_length=200)
     due_back = models.DateField(null=True, blank=True)  
