@@ -7,7 +7,8 @@ from celery import Celery
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bookcenter.settings')
 
-app = Celery('django_email_example', broker=os.environ.get("REDIS_URL"))
+app = Celery('bookcenter')
+# , broker=os.environ.get("CLOUDAMQP_URL")
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

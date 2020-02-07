@@ -68,6 +68,8 @@ class Query(APIView):
         email = request.POST['email']
         d = {"message": "<h1>You are a subcriber now</h1>"}
         print(email)
+        print(type(email))
+        send_email_task.delay(email)
         return render(request, 'query_form.html')
         # return Response({"Query has been sent": text})
 

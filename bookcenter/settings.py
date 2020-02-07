@@ -149,3 +149,28 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
+
+# CELERY_URL_BROKER = os.environ.get("REDIS_URL")
+BROKER_POOL_LIMIT = 1
+BROKER_CONNECTION_MAX_RETRIES = None
+# CELERY_RESULT_BACKEND = os.environ.get('REDISCLOUD_URL')
+# CELERY_RESULT_BACKEND = 'redis://h:pf7e787a2dfe3feb2a72b18dbf471ca78e619ed831add91038de1492bb4bacd65@ec2-54-164-216-194.compute-1.amazonaws.com:31929'
+# CELERY_RESULT_BACKEND = 'amqp://yjxborpk:AoFMhuDM4y_-12rSdtz63tActXwySMSQ@rhino.rmq.cloudamqp.com/yjxborpk'
+# CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERY_TASK_SERIALIZER = "json"
+CELERY_ACCEPT_CONTENT = ["json"]
+# CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+
+BROKER_TRANSPORT_OPTIONS = {
+    "max_connections": 2,
+}
+BROKER_POOL_LIMIT = None
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'arshidbaba93@gmail.com'
+EMAIL_HOST_PASSWORD = 'algorithms'
+EMAIL_USE_TLS = True
