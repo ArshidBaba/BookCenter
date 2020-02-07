@@ -65,11 +65,12 @@ class Query(APIView):
         # data = BookSerializer(many=True).data
         return render(request, 'query_form.html')
     def post(self, request):
-        email = request.POST['email']
+        email = request.POST.get('email')
         d = {"message": "<h1>You are a subcriber now</h1>"}
         print(email)
         print(type(email))
         send_email_task.delay(email)
+        # return Response(request.POST['email'])
         return render(request, 'query_form.html')
         # return Response({"Query has been sent": text})
 
