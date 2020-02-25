@@ -1,5 +1,5 @@
-test:
-  development: postgres
-  open: user=bookcenteruser dbname=bookcenter sslmode=disable
+development:
+  driver: postgres
+  open: user=bookcenteruser dbname=bookcenter host=localhost password=testing
 
 
