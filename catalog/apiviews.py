@@ -10,7 +10,7 @@ from django.core import serializers
 
 from .models import Book, Author, Genre, BookInstance
 # , Query
-from .serializers import BookSerializer, AuthorSerializer, GenreSerializer, BookInstanceSerializer
+from .serializers import BookSerializer, AuthorSerializer, GenreSerializer, BookInstanceSerializer, UserSerializer
 # , QuerySerializer
 from .tasks import send_email_task
 
@@ -73,6 +73,9 @@ class Query(APIView):
         # return Response(request.POST['email'])
         return render(request, 'query_form.html')
         # return Response({"Query has been sent": text})
+
+class UserCreate(generics.CreateAPIView):
+    serializer_class = UserSerializer
 
 
 # def post(self, request, pk, choice_pk):
