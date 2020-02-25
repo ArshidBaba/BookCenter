@@ -5,3 +5,7 @@
 __pycache__/
 local_settings.py
 README.md
+db/dbconf.yml
+db/migrations/
+
+.vscode/
