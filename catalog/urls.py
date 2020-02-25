@@ -25,7 +25,7 @@ urlpatterns = [
     # path('catalog/<int:pk>/', BookInstanceViewSet.as_view(), name="catalog" )
     # path('swagger-docs/', schema_view),
     path('queries', Query.as_view(), name='queries'),
-    path('users/', User)
+    path('users/', UserCreate.as_view(), name='user_create'),
 ]
 
 urlpatterns += router.urls
