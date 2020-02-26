@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404, render
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.http import JsonResponse
 from django.core import serializers
+from django.contrib.auth import authenticate
+from rest_framework.permissions import IsAuthenticated
 
 
 from .models import Book, Author, Genre, BookInstance
@@ -79,45 +81,18 @@ class UserCreate(generics.CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
 
+class LoginView(APIView):
+    permission_classes = ()
 
-# def post(self, request, pk, choice_pk):
-#         voted_by = request.data.get("voted_by")
-#         data = {'choice': choice_pk, 'poll': pk, 'voted_by': voted_by}
-#         serializer = VoteSerializer(data=data)
-#         if serializer.is_valid():
-#             vote = serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         else:
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            return Response({"token": user.auth_token.key})
+        else:
+            return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
-# class QueryDetail(APIView):
-#     renderer_classes = [TemplateHTMLRenderer]
-#     template_name = 'query_form.html'
 
-#     def get(self, request):
-#         serializer_class = QuerySerializer()
 
-#     def post(self, request):
-#         serializer_class = QuerySerializer(data=request.data)
-#         serializer_class.save()
-#         return redirect('books')
-
-# class QueryViewSet(viewsets.ModelViewSet):
-#     queryset = Query.objects.all()
-#     serializer_class = QuerySerializer
-
-# @api_view(['GET','POST'])
-# def queryapi(request):
-#     if request.method == 'POST':
-#         # data = request.data
-#         print(request.data)
-#         # response_data['text'] = serializers.serialize('json', request)
-#         # send_email_task.delay(JsonResponse(response_data, safe=False))
-#         # return Response({"message": "Got some data!", "data": request.data})
-#         return Response({"Query has been sent": request.data})
-#         # context = {
-#         #     'data': request.data
-#         # }
-#         # return render(request, 'query_form.html', context)
-#     return Response({"Welcome to Query page"})
 
