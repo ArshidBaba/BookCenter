@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     # 'django_rest_swagger',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -174,3 +175,13 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'arshidbaba93@gmail.com'
 EMAIL_HOST_PASSWORD = 'algorithms'
 EMAIL_USE_TLS = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+)
+}
