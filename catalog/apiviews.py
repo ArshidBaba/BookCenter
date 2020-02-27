@@ -7,6 +7,7 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from django.http import JsonResponse
 from django.core import serializers
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -76,10 +77,35 @@ class Query(APIView):
         return render(request, 'query_form.html')
         # return Response({"Query has been sent": text})
 
-class UserCreate(generics.CreateAPIView):
+# class UserCreate(generics.CreateAPIView):
+#     serializer_class = UserSerializer
+#     authentication_classes = ()
+#     permission_classes = ()
+
+class UserView(APIView):
     serializer_class = UserSerializer
     authentication_classes = ()
     permission_classes = ()
+
+    def post(self, request):
+        username = request.data.get("username")
+        # print(username)
+        email = request.data.get('email')
+        password = request.data.get('password')
+        is_staff = request.data.get('is_staff')  
+        # print(is_staff)
+        try:
+            if User.objects.filter(username=username).exists():
+                return Response({'state': 'error', 'message': 'Username already taken'}, status=200)
+            elif User.objects.filter(email=email).exists():
+                return Response({'state': 'error', 'message': 'User email id already exists'}, status=200)
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password, is_staff=is_staff)
+            return Response({'state': 'success', 'email': email, 'message': 'User created successfully'},
+                        status=200)
+        except Exception as e:
+            return Response({'state': 'success', 'message': 'an exception occurred'}, status=200)        
+
 
 class LoginView(APIView):
     permission_classes = ()

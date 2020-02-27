@@ -3,7 +3,9 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from .apiviews import GenreViewSet, AuthorViewSet, BookList, BookDetail, AuthorList, BookViewSet,\
-Query, UserCreate, LoginView
+Query,  LoginView, UserView
+
+# UserCreate,
 
 # , queryapi \
 # , QueryViewSet
@@ -26,7 +28,8 @@ urlpatterns = [
     # path('catalog/<int:pk>/', BookInstanceViewSet.as_view(), name="catalog" )
     # path('swagger-docs/', schema_view),
     path('queries', Query.as_view(), name='queries'),
-    path('users/', UserCreate.as_view(), name='user_create'),
+    # path('users/', UserCreate.as_view(), name='user_create'),
+    path('users/', UserView.as_view(), name='user_view'),
     path('login/', LoginView.as_view(), name='login'),
 ]
 
