@@ -9,6 +9,7 @@ from django.core import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 
 
 from .models import Book, Author, Genre, BookInstance
@@ -101,8 +102,12 @@ class UserView(APIView):
                 return Response({'state': 'error', 'message': 'User email id already exists'}, status=200)
             else:
                 user = User.objects.create_user(username=username, email=email, password=password, is_staff=is_staff)
+            user.save()
+            token = Token.objects.create(user=user)
+            print("Token:", token.key)
             return Response({'state': 'success', 'email': email, 'message': 'User created successfully'},
                         status=200)
+            
         except Exception as e:
             return Response({'state': 'success', 'message': 'an exception occurred'}, status=200)        
 
@@ -114,6 +119,7 @@ class LoginView(APIView):
         username = request.data.get('username')
         password = request.data.get('password')
         user = authenticate(username=username, password=password)
+        print("username", user)
         if user:
             return Response({"token": user.auth_token.key})
         else:
