@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog',
     'rest_framework',
-    'rest_framework_swagger',
+    # 'rest_framework_swagger',
     # 'django_rest_swagger',
     'rest_framework.authtoken',
 ]

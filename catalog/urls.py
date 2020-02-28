@@ -11,7 +11,7 @@ Query,  LoginView, UserView
 
 # , queryapi \
 # , QueryViewSet
-# from rest_framework_swagger.views import get_swagger_view
+from rest_framework.schemas import get_schema_view
 
 
 
@@ -29,6 +29,10 @@ urlpatterns = [
     # path('authors/', AuthorList.as_view(), name='authors'),
     # path('catalog/<int:pk>/', BookInstanceViewSet.as_view(), name="catalog" )
     # path('swagger-docs/', schema_view),
+    path('openapi', get_schema_view(
+        title="BookCenter",
+        description="API for all things …"
+    ), name='openapi-schema'),
     path('queries', Query.as_view(), name='queries'),
     # path('users/', UserCreate.as_view(), name='user_create'),
     path('users/', UserView.as_view(), name='user_view'),
