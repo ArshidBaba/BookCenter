@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework.documentation import include_docs_urls
 
 from .apiviews import GenreViewSet, AuthorViewSet, BookList, BookDetail, AuthorList, BookViewSet,\
 Query,  LoginView, UserView
@@ -37,6 +38,7 @@ urlpatterns = [
     # path('users/', UserCreate.as_view(), name='user_create'),
     path('users/', UserView.as_view(), name='user_view'),
     path('login/', LoginView.as_view(), name='login'),
+    path(r'docs/', include_docs_urls(title="BookCenter"))
 ]
 
 urlpatterns += router.urls
