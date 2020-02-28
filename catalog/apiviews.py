@@ -78,10 +78,10 @@ class Query(APIView):
         return render(request, 'query_form.html')
         # return Response({"Query has been sent": text})
 
-# class UserCreate(generics.CreateAPIView):
-#     serializer_class = UserSerializer
-#     authentication_classes = ()
-#     permission_classes = ()
+class UserCreate(generics.CreateAPIView):
+    serializer_class = UserSerializer
+    authentication_classes = ()
+    permission_classes = ()
 
 class UserView(APIView):
     serializer_class = UserSerializer
