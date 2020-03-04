@@ -1,5 +1,6 @@
 {
     "python.linting.enabled": false,
-    "python.pythonPath": "${workspaceFolder}/django_dev/bin/python",
+    // "python.pythonPath": "${workspaceFolder}/django_dev/bin/python",
+    "python.pythonPath": "/home/arshid/Hash/djangodev/django_dev/bin/python",
     "python.terminal.activateEnvInCurrentTerminal": true
 }

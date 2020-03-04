@@ -90,11 +90,9 @@ class UserView(APIView):
 
     def post(self, request):
         username = request.data.get("username")
-        # print(username)
         email = request.data.get('email')
         password = request.data.get('password')
         is_staff = request.data.get('is_staff')  
-        # print(is_staff)
         try:
             if User.objects.filter(username=username).exists():
                 return Response({'state': 'error', 'message': 'Username already taken'}, status=200)
@@ -107,7 +105,7 @@ class UserView(APIView):
             print("Token:", token.key)
             return Response({'state': 'success', 'email': email, 'message': 'User created successfully'},
                         status=200)
-            
+               
         except Exception as e:
             return Response({'state': 'success', 'message': 'an exception occurred'}, status=200)        
 
