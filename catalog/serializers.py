@@ -26,11 +26,6 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = '__all__'
 
-# class QuerySerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Query
-#         fields = '__all__'
-
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:

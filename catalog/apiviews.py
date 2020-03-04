@@ -40,12 +40,6 @@ class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
-# class GenreList(APIView):
-#     def get(self, request):
-#         genres = Genre.objects.all()
-#         data = GenreSerializer(genres, many=True).data
-#         return Response(data)
-
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
